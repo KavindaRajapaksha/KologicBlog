@@ -5,7 +5,6 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    
     "dev": "nodemon api/index.js",
     "start": "node api/index.js"
   },
@@ -13,7 +12,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.4.4",
     "express": "^4.18.2",
+    "mongoose": "^8.1.2",
     "nodemon": "^3.0.3"
   }
 }
