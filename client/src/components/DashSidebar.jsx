@@ -27,11 +27,11 @@ export default function DashSidebar() {
               label={"User"}
               labelColor="dark"
             >
-              Profile
+             <span>Profile</span>
             </Sidebar.Item>
           </Link>
           <Sidebar.Item  icon={HiArrowSmRight} className='cursor-pointer'>
-            Sign Out
+           <span>Sign Out</span> 
           </Sidebar.Item>
         </Sidebar.ItemGroup>
       </Sidebar.Items>
