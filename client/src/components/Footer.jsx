@@ -47,7 +47,7 @@ export default function FooterComponent() {
                 >
                   Github
                 </Footer.Link>
-                <Footer.Link href='https://www.facebook.com/profile.php?id=61553784651577'>Facebbok</Footer.Link>
+                <Footer.Link href='https://www.facebook.com/profile.php?id=61553784651577'>Facebook</Footer.Link>
               </Footer.LinkGroup>
             </div>
             <div>
