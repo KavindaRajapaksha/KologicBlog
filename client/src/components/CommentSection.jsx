@@ -1,8 +1,9 @@
 
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { Textarea, Button,Alert } from 'flowbite-react';
+import Comment from './Comment';
 
 
 export default function CommentSection({ postId }) {
@@ -11,6 +12,7 @@ export default function CommentSection({ postId }) {
   const [commentError, setCommentError] = useState(null);
   const [comments, setComments] = useState([]);
 
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (comment.length > 200) {
@@ -38,6 +40,20 @@ export default function CommentSection({ postId }) {
       setCommentError(error.message);
     }
   };
+  useEffect(() => {
+    const getComments = async () => {
+      try {
+        const res = await fetch(`/api/comment/getPostComments/${postId}`);
+        if (res.ok) {
+          const data = await res.json();
+          setComments(data);
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    getComments();
+  }, [postId]);
  
   return (
     <div className='max-w-2xl mx-auto w-full p-3'>
@@ -93,6 +109,25 @@ export default function CommentSection({ postId }) {
 
         </form>
        
+      )}
+      {comments.length === 0 ? (
+        <p className='text-sm my-5'>No comments yet!</p>
+      ) : (
+        <>
+          <div className='text-sm my-5 flex items-center gap-1'>
+            <p>Comments</p>
+            <div className='border border-gray-400 py-1 px-2 rounded-sm'>
+              <p>{comments.length}</p>
+            </div>
+          </div>
+          {comments.map((comment) => (
+            <Comment
+              key={comment._id}
+              comment={comment}
+             
+            />
+          ))}
+        </>
       )}
      
     </div>
