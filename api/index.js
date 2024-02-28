@@ -17,6 +17,11 @@ mongoose.connect(process.env.MONGO).then(()=>{
 }).catch((err)=>{
     console.log('Error:',err.message);
 });
+
+const __dirname = path.resolve();   
+
+
+
 const app=express();
 
 const PORT=process.env.PORT || 5000;
@@ -31,6 +36,12 @@ app.use('/api/auth',authRoutes);
 app.use('/api/post',postRoutes);
 app.use('/api/comment',commentRoutes);  
 
+app.use(express.static(path.join(__dirname, '/client/dist')));
+
+app.get('*', (req, res) => {   
+    res.sendFile(path.join(__dirname, '/client/dist/index.html'));
+  }
+);
 
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
