@@ -22,7 +22,7 @@ export default function FooterComponent() {
               <Footer.Title title='About' />
               <Footer.LinkGroup col>
                 <Footer.Link
-                  href='#'
+                  href='/post/kologic-technology'
                   target='_blank'
                   rel='noopener noreferrer'
                 >
@@ -53,8 +53,8 @@ export default function FooterComponent() {
             <div>
               <Footer.Title title='Legal' />
               <Footer.LinkGroup col>
-                <Footer.Link href='#'>Privacy Policy</Footer.Link>
-                <Footer.Link href='#'>Terms &amp; Conditions</Footer.Link>
+                <Footer.Link href='/privacy-policy'>Privacy Policy</Footer.Link>
+                <Footer.Link href='/terms-and-conditions'>Terms &amp; Conditions</Footer.Link>
               </Footer.LinkGroup>
             </div>
           </div>
@@ -67,7 +67,7 @@ export default function FooterComponent() {
             year={new Date().getFullYear()}
           />
           <div className="flex gap-6 sm:mt-0 mt-4 sm:justify-center">
-            <Footer.Icon href='#' icon={BsFacebook}/>
+            <Footer.Icon href='https://www.facebook.com/profile.php?id=61553784651577' icon={BsFacebook}/>
             <Footer.Icon href='#' icon={BsInstagram}/>
             <Footer.Icon href='#' icon={BsTwitter}/>
             <Footer.Icon href='https://github.com/KavindaRajapaksha' icon={BsGithub}/>
