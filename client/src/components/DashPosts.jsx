@@ -1,16 +1,16 @@
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Table } from 'flowbite-react';
-import { Link } from 'react-router-dom';
-import { Modal, Button } from 'flowbite-react';
-import { HiOutlineExclamationCircle } from 'react-icons/hi';
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Table } from "flowbite-react";
+import { Link } from "react-router-dom";
+import { Modal, Button } from "flowbite-react";
+import { HiOutlineExclamationCircle } from "react-icons/hi";
 
 export default function DashPosts() {
   const { currentUser } = useSelector((state) => state.user);
   const [userPosts, setUserPosts] = useState([]);
   const [showMore, setShowMore] = useState(true);
   const [showModel, setShowModel] = useState(false);
-  const [postIdToDelete, setPostIdToDelete] = useState('');
+  const [postIdToDelete, setPostIdToDelete] = useState("");
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -35,7 +35,9 @@ export default function DashPosts() {
   const handleShowMore = async () => {
     const startIndex = userPosts.length;
     try {
-      const res = await fetch(`/api/post/getposts?userId=${currentUser._id}&startIndex=${startIndex}`);
+      const res = await fetch(
+        `/api/post/getposts?userId=${currentUser._id}&startIndex=${startIndex}`
+      );
       const data = await res.json();
       if (res.ok) {
         setUserPosts((prev) => [...prev, ...data.posts]);
@@ -51,9 +53,12 @@ export default function DashPosts() {
   const handleDeletePost = async (postId) => {
     setShowModel(false);
     try {
-      const res = await fetch(`/api/post/deletepost/${postId}/${currentUser._id}`, {
-        method: 'DELETE',
-      });
+      const res = await fetch(
+        `/api/post/deletepost/${postId}/${currentUser._id}`,
+        {
+          method: "DELETE",
+        }
+      );
       const data = await res.json();
       if (!res.ok) {
         console.log(data.message);
@@ -66,10 +71,10 @@ export default function DashPosts() {
   };
 
   return (
-    <div className='table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500'>
+    <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
       {currentUser.isAdmin && userPosts.length > 0 ? (
         <>
-          <Table hoverable className='shadow-md'>
+          <Table hoverable className="shadow-md">
             <Table.Head>
               <Table.HeadCell>Date updated</Table.HeadCell>
               <Table.HeadCell>Post image</Table.HeadCell>
@@ -81,16 +86,25 @@ export default function DashPosts() {
               </Table.HeadCell>
             </Table.Head>
             {userPosts.map((post) => (
-              <Table.Body key={post._id} className='divide-y'>
-                <Table.Row className='bg-white dark:border-gray-700 dark:bg-gray-800'>
-                  <Table.Cell>{new Date(post.updatedAt).toLocaleDateString()}</Table.Cell>
+              <Table.Body key={post._id} className="divide-y">
+                <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                  <Table.Cell>
+                    {new Date(post.updatedAt).toLocaleDateString()}
+                  </Table.Cell>
                   <Table.Cell>
                     <Link to={`/post/${post.slug}`}>
-                      <img src={post.image} alt={post.title} className='w-20 h-10 object-cover bg-gray-500' />
+                      <img
+                        src={post.image}
+                        alt={post.title}
+                        className="w-20 h-10 object-cover bg-gray-500"
+                      />
                     </Link>
                   </Table.Cell>
                   <Table.Cell>
-                    <Link className='font-medium text-gray-900 dark:text-white' to={`/post/${post.slug}`}>
+                    <Link
+                      className="font-medium text-gray-900 dark:text-white"
+                      to={`/post/${post.slug}`}
+                    >
                       {post.title}
                     </Link>
                   </Table.Cell>
@@ -101,13 +115,16 @@ export default function DashPosts() {
                         setShowModel(true);
                         setPostIdToDelete(post._id);
                       }}
-                      className='font-medium text-red-500 hover:underline cursor-pointer'
+                      className="font-medium text-red-500 hover:underline cursor-pointer"
                     >
                       Delete
                     </span>
                   </Table.Cell>
                   <Table.Cell>
-                    <Link className='text-teal-500 hover:underline' to={`/update-post/${post._id}`}>
+                    <Link
+                      className="text-teal-500 hover:underline"
+                      to={`/update-post/${post._id}`}
+                    >
                       <span>Edit</span>
                     </Link>
                   </Table.Cell>
@@ -116,7 +133,10 @@ export default function DashPosts() {
             ))}
           </Table>
           {showMore && (
-            <button onClick={handleShowMore} className='w-full text-teal-500 self-center text-sm py-7'>
+            <button
+              onClick={handleShowMore}
+              className="w-full text-teal-500 self-center text-sm py-7"
+            >
               Show more
             </button>
           )}
@@ -125,19 +145,28 @@ export default function DashPosts() {
         <p> No posts to display </p>
       )}
 
-      <Modal show={showModel} setShow={setShowModel} onClose={() => setShowModel(false)} popup size='md'>
+      <Modal
+        show={showModel}
+        setShow={setShowModel}
+        onClose={() => setShowModel(false)}
+        popup
+        size="md"
+      >
         <Modal.Header />
         <Modal.Body>
-          <div className='text-center'>
-            <HiOutlineExclamationCircle className='h-14 w-14 text-gray-400 dark:text-gray-200 mb-4 mx-auto' />
-            <h3 className='mb-5 text-lg text-gray-500 dark:text-gray-400'>
+          <div className="text-center">
+            <HiOutlineExclamationCircle className="h-14 w-14 text-gray-400 dark:text-gray-200 mb-4 mx-auto" />
+            <h3 className="mb-5 text-lg text-gray-500 dark:text-gray-400">
               Are you sure you want to delete this post?
             </h3>
-            <div className='flex justify-center gap-4'>
-              <Button color='failure' onClick={() => handleDeletePost(postIdToDelete)}>
+            <div className="flex justify-center gap-4">
+              <Button
+                color="failure"
+                onClick={() => handleDeletePost(postIdToDelete)}
+              >
                 Yes, I'm sure
               </Button>
-              <Button color='gray' onClick={() => setShowModel(false)}>
+              <Button color="gray" onClick={() => setShowModel(false)}>
                 No, cancel
               </Button>
             </div>

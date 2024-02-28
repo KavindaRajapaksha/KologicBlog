@@ -18,12 +18,11 @@ import Search from "./pages/Search";
 import TermsAndConditions from "./pages/TermsAndCondition";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 
-
 export default function App() {
   return (
     <BrowserRouter>
-    <ScrollToTop/>
-    <Header/>
+      <ScrollToTop />
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -32,19 +31,18 @@ export default function App() {
         <Route path="/search" element={<Search />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route element={<PrivateRoute />}> 
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route element={<PrivateRoute />}>
+          <Route path="/dashboard" element={<Dashboard />} />
         </Route>
         <Route path="/projects" element={<Projects />} />
         <Route path="/post/:postSlug" element={<PostPage />} />
-        <Route element={<OnlyAdminPrivateRoute />}> 
-        <Route path="/create-post" element={<CreatePost />} />
-        <Route path="/update-post/:postId" element={<UpdatePost />} />
+        <Route element={<OnlyAdminPrivateRoute />}>
+          <Route path="/create-post" element={<CreatePost />} />
+          <Route path="/update-post/:postId" element={<UpdatePost />} />
         </Route>
       </Routes>
-       
 
-      <Footer/>
+      <Footer />
     </BrowserRouter>
   );
 }
