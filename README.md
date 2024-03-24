@@ -69,7 +69,7 @@ This project is deployed on the Render platform. The deployment process involves
 Visit [Kologic Blog](https://kologicblog.onrender.com) to explore the live demo.
 
 ## Credits:
-- This project is created and maintained by [Your Name].
+- This project is created and maintained by Kavinda Rajapaksha.
 - Contributions are welcome. Feel free to submit issues and pull requests.
 
 ## License:
