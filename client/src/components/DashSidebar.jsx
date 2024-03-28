@@ -53,7 +53,7 @@ export default function DashSidebar() {
                 icon={HiChartPie}
                 as="div"
               >
-                Dashboard
+                <span>Dashboard</span>
               </Sidebar.Item>
             </Link>
           )}
